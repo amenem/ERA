@@ -12,5 +12,5 @@ This contains 4 files
 
 In this file , model network is defined. 
 <p align="center">
- <img src="./plots/model.png" alt="Drawing", width=60%>
+ <img src="./plots/model_.png" alt="Drawing", width=60%>
 </p>
