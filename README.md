@@ -11,6 +11,11 @@ This contains 4 files
 ## model.py
 
 In this file , model network is defined. 
-<p align="center">
- <img src="./plots/model_.png" alt="Drawing", width=60%>
-</p>
+
+## utils.py
+
+It contains train and test functions.
+
+## S5.ipynb
+
+It does load the MNIST data , transform it. Instantiate Net model from model.py. Access train() and test() method to perform the training and testing. Finally Does the visulaization for Training, Tesing accuracy and losses during training.
