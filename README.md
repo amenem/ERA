@@ -12,6 +12,10 @@ This contains 4 files
 
 In this file , model network is defined. 
 
+<p align="center">
+ <img src="./plots/model.png" alt="Drawing", height=60%>
+</p>
+
 ## utils.py
 
 It contains train and test functions.
