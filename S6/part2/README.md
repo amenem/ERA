@@ -20,7 +20,7 @@ class Net(nn.Module):
         self.bn5 = nn.BatchNorm2d(32)
         self.conv6 = nn.Conv2d(32, 32, 3, stride=2,padding=1) #input - 6 OUtput - 3 RF - 29
         self.bn6 = nn.BatchNorm2d(32)
-        self.conv7 = nn.Conv2d(32, 10, 3) #input - 3 OUtput - 3 RF - 45
+        self.conv7 = nn.Conv2d(32, 10, 3) #input - 3 OUtput - 1 RF - 45
         self.d_out = nn.Dropout2d(.25)
 
     def forward(self, x):
