@@ -44,6 +44,15 @@ class Net(nn.Module):
 ````
 It contains 6 convolution layers, with one max pool layer.
 The idea is to reach Receptive Field to full size of the input image (28),(which was achieved in layer 5), keeping low parameters.
+````
+#input - 1*28*28 OUtput - 4*28*28 RF - 3
+#input - 4*28*28 OUtput - 8*13*13 RF - 5
+#input - 8*13*13 OUtput - 16*13*13 RF - 9
+#input - 16*13*13 OUtput - 16*6*6 RF - 13
+#input - 16*6*6 OUtput - 32*6*6 RF - 21
+#input - 32*6*6 OUtput - 32*3*3 RF - 29
+#input - 32*3*3 OUtput - 10*1*1 RF - 45
+````
 Convolutional layers were accompnied by batch norm and drop out. 
 Final output is given by log softmax function.
 
