@@ -1,7 +1,7 @@
 # S6 Assignment
 
 This Repository contains the code for assignment 6 part 2 solution.
-The Approach achieves **99.28% validation accuracy**, with **less than 20k parameters.**
+The Approach achieves **99.28% validation accuracy**, with **less than 20k parameters,** in **20 epochs**.
 
 ## Code Summary
 Model Network
