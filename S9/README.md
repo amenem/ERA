@@ -13,7 +13,7 @@ Contents:
 
 ## model/model1.py
 In this file , model network is defined.
-Three Convolutional blocs With 4 conv layer each with BatchNorm and Relu. The last layer is strided convolution instead of maxpool. Receptive field of 49 is reached at the last layer of the last bloc.
+Three Convolutional blocs With 4 conv layer each with BatchNorm and Relu. The last layer is strided convolution instead of maxpool. Receptive field of 49 is reached at the last layer of the last bloc. Dropout is not used as train acc is already lagging behind the test accuracy, due to augmentations.
 
 ## model/model2.py
 In this file , model2 network is defined.
