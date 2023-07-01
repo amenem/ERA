@@ -7,22 +7,22 @@ def train(model, optimizer, train_loader,device,epoch):
     pbar = tqdm(train_loader)
     losses=[]
     accs=[]
-    for idx, (data,label) in enumerate(pbar):
-        data.float().to(device)
-        label.to(device)
+    for idx, data in enumerate(pbar):
+        input = data[0].to(device)
+        label = data[1].to(device)
         model.to(device)
         optimizer.zero_grad()
-        output = model(data)
+        output = model(input)
         loss = F.nll_loss(output, label)
         loss.backward()
         optimizer.step()
         losses.append(loss)
         pred = output.argmax(dim=1)
-        acc = pred.eq(label).sum()/data.shape[0]
+        acc = pred.eq(label).sum()/input.shape[0]
         accs.append(acc)
     train_avg_loss = sum(losses)/len(losses)
     train_avg_acc = sum(accs)/len(accs)
-    print (f'at epoch:{epoch} avg_train_loss:{train_avg_loss},avg_train_acc:{train_avg_acc}')
+    print (f'at epoch:{epoch+1} avg_train_loss:{train_avg_loss:.3f},avg_train_acc:{train_avg_acc:.3f}')
 
 def test(model, test_loader,device,epoch):
     model.eval()
@@ -30,16 +30,16 @@ def test(model, test_loader,device,epoch):
     losses=[]
     accs=[]
     with torch.no_grad():
-        for idx, (data,label) in enumerate(pbar):
-            data.float().to(device)
-            label.to(device)
+        for idx, data in enumerate(pbar):
+            input = data[0].to(device)
+            label = data[1].to(device)
             model.to(device)
-            output = model(data)
+            output = model(input)
             loss = F.nll_loss(output, label)
             losses.append(loss)
             pred = output.argmax(dim=1)
-            acc = pred.eq(label).sum()/data.shape[0]
+            acc = pred.eq(label).sum()/input.shape[0]
             accs.append(acc)
         test_avg_loss = sum(losses)/len(losses)
         test_avg_acc = sum(accs)/len(accs)
-        print (f'at epoch:{epoch} avg_test_loss:{test_avg_loss},avg_test_acc:{test_avg_acc}')
+        print (f'at epoch:{epoch+1} avg_test_loss:{test_avg_loss:.3f},avg_test_acc:{test_avg_acc:.3f}')
