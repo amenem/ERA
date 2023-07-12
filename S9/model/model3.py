@@ -1,10 +1,11 @@
 import torch.nn as nn
 import torch.nn.functional as F
-class Net2(nn.Module):
+class Net3(nn.Module):
     def __init__(self):
         super().__init__()
 
         self.convbloc1 = nn.Sequential(
+            nn.Conv2d(in_channels=3, groups=3, out_channels=3,kernel_size=(3,3), stride=1, padding=1),
             nn.Conv2d(3, 16, 3, stride=1, padding=1), # input fm 32  ,output fm 32, RF 3
             nn.ReLU(),
             nn.BatchNorm2d(16),
