@@ -58,6 +58,6 @@ class CustomRes(nn.Module):
         X = self.pool(X)
         X = X.view(-1,512)
         X = self.fc(X)
-        X = F.softmax(X,dim=-1)
+        X = F.log_softmax(X,dim=-1)
         return X
 
