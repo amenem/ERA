@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import torch
 import torch.nn.functional as F
-def train(model, optimizer, train_dataloader,device,epoch):
+def train(model, optimizer, train_dataloader,device,epoch,scheduler):
     model.train()
     pbar = tqdm(train_dataloader)
     losses=[]
@@ -15,6 +15,7 @@ def train(model, optimizer, train_dataloader,device,epoch):
         loss = F.nll_loss(output, label)
         loss.backward()
         optimizer.step()
+        scheduler.step()
         losses.append(loss)
         pred = output.argmax(dim=1)
         acc = pred.eq(label).sum()/data.shape[0]
