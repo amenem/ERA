@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import torch
 import torch.nn.functional as F
-def train(model, optimizer, train_dataloader,device,epoch,scheduler):
+def train(model, optimizer, train_dataloader,device,epoch,scheduler,criterion):
     model.train()
     pbar = tqdm(train_dataloader)
     losses=[]
@@ -12,7 +12,7 @@ def train(model, optimizer, train_dataloader,device,epoch,scheduler):
         model=model.to(device)
         optimizer.zero_grad()
         output = model(data)
-        loss = F.nll_loss(output, label)
+        loss = criterion(output, label)
         loss.backward()
         optimizer.step()
         scheduler.step()
@@ -25,7 +25,7 @@ def train(model, optimizer, train_dataloader,device,epoch,scheduler):
     print (f'at epoch:{epoch}')
     print(f'avg_train_loss:{train_avg_loss},avg_train_acc:{train_avg_acc}')
 
-def test(model, test_dataloader,device,epoch):
+def test(model, test_dataloader,device,epoch,criterion):
     model.eval()
     # pbar = tqdm(test_dataloader)
     losses=[]
@@ -36,8 +36,7 @@ def test(model, test_dataloader,device,epoch):
             label=label.to(device)
             model=model.to(device)
             output = model(data)
-            # loss = F.nll_loss(output, label)
-            loss = F.cross_entropy(output, label)
+            loss = criterion(output, label)
             losses.append(loss)
             pred = output.argmax(dim=1)
             acc = pred.eq(label).sum()/data.shape[0]
